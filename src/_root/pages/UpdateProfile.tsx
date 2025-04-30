@@ -50,7 +50,7 @@ const UpdateProfile = () => {
         <Loader />
       </div>
     );
-
+    
   // Handler
   const handleUpdate = async (value: z.infer<typeof ProfileValidation>) => {
     const updatedUser = await updateUser({

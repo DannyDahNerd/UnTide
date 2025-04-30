@@ -2,7 +2,7 @@ import { useState } from "react";
 import Loader from "@/components/shared/Loader"; // your Loader component
 
 type ProfileUploaderProps = {
-  fieldChange: (file: File) => void;
+  fieldChange: ([file]: File[]) => void;
   mediaUrl: string;
 };
 
@@ -20,7 +20,7 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
 
       // Pass file back to parent form
       setIsUploading(true);
-      fieldChange(file);
+      fieldChange([file]);
 
       // Fake upload time (optional if you want a smooth animation effect)
       setTimeout(() => {
