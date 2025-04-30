@@ -23,7 +23,6 @@ import LocationSelector from "@/components/shared/LocationSelector";
 import { useEffect, useState } from "react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Controller } from "react-hook-form";
 
 type PostFormProps = {
     post?:Models.Document;

@@ -23,7 +23,7 @@ export default function MapPage() {
   });
 
   return (
-    <div className="w-full h-[calc(100vh-23vh)] md:h-screen">
+<div className="w-full h-[calc(100dvh-64px)] overflow-hidden">
       <MapContainer
         center={[36.9645, -122.0167]}
         zoom={9}
