@@ -12,7 +12,7 @@ const PostCard = ({post}:PostCardProps) => {
     const {user} = useUserContext();
 
     if(!post.creator) return;
-  return (
+return (
     <div className="post-card">
         <div className="flex-between">
             <div className = "flex items-center gap-3">
@@ -23,7 +23,7 @@ const PostCard = ({post}:PostCardProps) => {
                     className="rounded-full w-12 lg:h-12"
                     />
                 </Link>
- 
+
                 <div className="flex flex-col">
                     <p className="base-medium lg:body-bold text-light-1">
                         {post.creator.name}
@@ -83,7 +83,7 @@ const PostCard = ({post}:PostCardProps) => {
         </Link>
         <PostStats post={post} userId={user.id}/>
     </div>
-  )
+    )
 }
 
 export default PostCard

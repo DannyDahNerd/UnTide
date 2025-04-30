@@ -318,21 +318,41 @@ export async function updatePost(post: IUpdatePost) {
     }
 }
 
-export async function deletePost(postId:string, imageId:string) {
-    if(!postId || !imageId) throw Error;
-
+export async function deletePost(postId: string, imageId: string) {
+    if (!postId || !imageId) throw new Error("Missing postId or imageId");
+  
     try {
+      // 1. Delete all saved records referencing this post
+      const savedRecords = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.savesCollectionId,
+        [Query.equal("post", postId)]
+      );
+  
+      for (const record of savedRecords.documents) {
         await databases.deleteDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.postCollectionId,
-            postId
-        )
-
-        return{status:'ok'}
+          appwriteConfig.databaseId,
+          appwriteConfig.savesCollectionId,
+          record.$id
+        );
+      }
+  
+      // 2. Delete the post itself
+      await databases.deleteDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.postCollectionId,
+        postId
+      );
+  
+      // 3. Delete the image from storage
+      await storage.deleteFile(appwriteConfig.storageId, imageId);
+  
+      return { status: "ok" };
     } catch (error) {
-        console.log(error);
+      console.error("Failed to delete post and related saves:", error);
+      throw error;
     }
-}
+  }
 
 export async function getUserById(userId: string) {
     try {
