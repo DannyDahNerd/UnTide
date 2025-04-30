@@ -188,7 +188,7 @@
 
   /* Bottom bar */
   .bottom-bar {
-    @apply absolute bottom-0 left-0 z-[1000] w-full flex-between bg-dark-2 px-5 py-4 md:hidden;
+    @apply sticky bottom-0 left-0 z-[1000] w-full flex-between bg-dark-2 px-5 py-4 md:hidden;
   }
 
   /* File uploader */
